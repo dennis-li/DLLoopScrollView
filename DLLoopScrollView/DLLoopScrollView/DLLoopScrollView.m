@@ -57,7 +57,6 @@
 
 #pragma  mark - Notification
 
-
 #pragma  mark - Private Method
 - (void) p_setupWithFirstItemNumber:(NSInteger) number
 {
@@ -69,7 +68,7 @@
 //最先显示的视图
 - (UIView *) p_updateCenterPage
 {
-    UIView *centerPage = [self.dataSource infiniteLoopScrollView:self pageAtIndex:_currentItemNumber];
+    UIView *centerPage = [self.dataSource loopScrollView:self pageAtIndex:_currentItemNumber];
     [self.scrollView addSubview:centerPage];
     return centerPage;
 }
@@ -82,7 +81,7 @@
         leftItemNumber = _itemCount-1;
     }
     
-    UIView *leftPage = [self.dataSource infiniteLoopScrollView:self pageAtIndex:leftItemNumber];
+    UIView *leftPage = [self.dataSource loopScrollView:self pageAtIndex:leftItemNumber];
     [self.scrollView addSubview:leftPage];
     return leftPage;
 }
@@ -92,7 +91,7 @@
 {
     NSInteger rightItemNumber = _currentItemNumber+1;
     rightItemNumber %= _itemCount;
-    UIView *rightView = [self.dataSource infiniteLoopScrollView:self pageAtIndex:rightItemNumber];
+    UIView *rightView = [self.dataSource loopScrollView:self pageAtIndex:rightItemNumber];
     [self.scrollView addSubview:rightView];
     return rightView;
 }
@@ -190,7 +189,7 @@
 - (void) reloadData
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        _itemCount = [_dataSource infiniteLoopScrollView:self];
+        _itemCount = [_dataSource numberOfPagesInLoopScrollView:self];
         
         if (_itemCount < 1) {
             return;

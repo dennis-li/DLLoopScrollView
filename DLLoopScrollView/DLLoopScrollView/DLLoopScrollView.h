@@ -14,11 +14,10 @@
 @required
 
 //数据源总数
-- (NSInteger) infiniteLoopScrollView:(DLLoopScrollView *) infiniteLoopScrollView;
+- (NSInteger) numberOfPagesInLoopScrollView:(DLLoopScrollView *) loopScrollView;
 
 //需要显示的的subView
-- (UIView *) infiniteLoopScrollView:(DLLoopScrollView *) infiniteLoopScrollView pageAtIndex:(NSInteger ) index;
-
+- (UIView *) loopScrollView:(DLLoopScrollView *) loopScrollView pageAtIndex:(NSInteger ) index;
 
 @end
 
